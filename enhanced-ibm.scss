@@ -1,0 +1,292 @@
+@import '../paths-site';
+@import '../reset';
+@import '../base-imports';
+@import '../global';
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,800');
+
+$base-input-height: rem(64);
+
+.inFrame {
+  padding: rem(34);
+
+  .paymentError {
+    background-color: $base-red;
+    color: $base-white;
+    font-family: $base-label-font-family;
+    text-align: left;
+    border: none;
+    font-size: rem(12);
+  }
+
+  .dialogBox .dialogBoxBody,
+  .instrument,
+  .instrument.active,
+  .content,
+  .cardBody,
+  #walletSelection,
+  #paymentSelection {
+    border: 0;
+    background-color: transparent !important; // makes sure IBM default styles do not override this
+  }
+
+  .cardBody {
+    padding: 0;
+  }
+
+  .instrument {
+    margin: 0;
+  }
+
+  .header {
+    display: none !important; // makes sure IBM default styles do not override this
+  }
+
+  .instrument:not(.saved) .content {
+    padding-bottom: 0;
+  }
+
+  .walletHeader,
+  .paymentHeader {
+    display: none;
+  }
+
+  .creditCardIcons {
+    .alignRight {
+      text-align: right;
+      min-width: 50%;
+    }
+  }
+
+  .cardLogoHolder {
+    display: flex;
+    flex-wrap: wrap;
+    .cardLogo {
+      flex: 0 0 auto;
+      height: rem(24);
+    }
+  }
+
+  #securityLogoHolder {
+    margin-left: auto;
+    .cardLogo {
+      flex: 0 0 auto;
+      height: rem(24);
+    }
+  }
+
+  .instrumentLogoHolder {
+    img.logo {
+      height: rem(24);
+    }
+  }
+
+  #editDefaultCard_Form,
+  #editCard_Form {
+    .instrumentPopupHeader,
+    .contentSimplified {
+      padding: 0 rem(34);
+      border: 0;
+      background-color: blue !important; // makes sure IBM default styles do not override this
+    }
+
+    .instrumentPopupContent {
+      padding: rem(13) 0;
+    }
+
+    .instrumentPopupHeader {
+      padding: 0;
+      margin-bottom: 0;
+
+      .title,
+      .expDate {
+        display: none;
+      }
+
+      .instrumentNumber {
+        display: flex;
+        align-items: center;
+
+        margin-top: rem(10);
+        padding-left: rem(10);
+        color: $base-light-brown;
+        background-color: rgba($base-medium-grey, 0.1);
+
+        font-family: $base-input-font-family;
+        font-size: rem($base-input-font-size);
+        font-weight: $base-input-font-weight;
+        height: $base-input-height;
+      }
+    }
+
+    .commandButton.continue {
+      margin: 0;
+    }
+  }
+
+  .cardNumberHolder,
+  .nameOnCardHolder,
+  .zipCodeHolder,
+  .cardCvCHolder,
+  .inputHolderWide,
+  .useAsHolder,
+  .holder,
+  .expirationDateCvcholder {
+    width: auto;
+  }
+
+  .inputContainer {
+    height: $base-input-height;
+    border: 0;
+    margin-bottom: rem(8);
+
+    &:after,
+    &:before {
+      content: none !important; // make sure no icon is displayed inside input containers
+    }
+
+    &.error {
+      margin-bottom: 0;
+      border-bottom: 3px solid $base-red;
+      label {
+        color: $base-red;
+      }
+    }
+
+    label.placeHolderLabel {
+      display: none;
+    }
+
+    .labelContainer {
+      margin-top: rem(
+        10
+      ) !important; // overrides any margin-top variation/animation and make sure our input label stay still
+      text-transform: uppercase;
+      position: absolute;
+      font-family: $base-label-font-family;
+      font-size: rem(12);
+      font-weight: 800;
+      color: $base-label-color;
+      text-transform: uppercase;
+      @include tracking(80);
+      line-height: 1;
+      pointer-events: none;
+      transition: $base-in-out;
+      opacity: 1 !important; // override iframe animations, preventing labels from flashing when focused
+    }
+
+    input {
+      font-family: $base-input-font-family;
+      font-size: rem($base-input-font-size);
+      font-weight: $base-input-font-weight;
+      color: $base-input-color;
+      padding-top: rem(14);
+      height: $base-input-height;
+    }
+
+    &:not(.error) + .errorMsg {
+      display: none;
+    }
+
+    & + .errorMsg {
+      position: relative;
+      background-color: transparent;
+      display: block;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      color: $base-red;
+      width: 100%;
+      transform: none;
+      text-align: left;
+      margin-left: rem(5);
+      padding: rem(5) 0;
+      font-size: rem(12);
+      font-weight: $base-input-font-weight;
+
+      &:after {
+        content: none;
+      }
+    }
+  }
+
+  .cardCvCHolder .cvcInfoLinkHolder {
+    display: none;
+  }
+
+  .holder.cardCvCHolder {
+    display: block;
+    margin-bottom: 0;
+
+    .cvcInput {
+      display: block;
+    }
+  }
+
+  .buttonHolder {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0;
+    .right {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+    }
+    .commandButton.continue {
+      height: auto;
+      border-radius: 0;
+      position: relative;
+      display: block;
+      width: 25%;
+      max-width: 100%;
+      font-family: $base-font-family;
+      font-size: rem(12);
+      font-weight: 600;
+      color: $base-white;
+      @include tracking(100);
+      line-height: 1;
+      text-align: center;
+      text-transform: uppercase;
+      background-color: $base-bright-green;
+      padding: rem(14) rem(5);
+      margin-top: rem(10);
+      border-radius: 0;
+      transition: color $base-in-out-suffix, background-color $base-in-out-suffix;
+      font-weight: 800;
+
+      &:focus,
+      &:hover {
+        background-color: $base-dark-grey;
+      }
+    }
+  }
+}
+
+@include media($base-mq-small-mobile-only) {
+  .inFrame {
+    .buttonHolder {
+      .commandButton.continue {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@include media($base-mq-small-only) {
+  .inFrame {
+    padding: 0;
+
+    #securityLogoHolder {
+      flex: 0 0 100%;
+    }
+  }
+}
+
+@include media($base-mq-medium-and-up) {
+  .inFrame {
+    .buttonHolder {
+      .commandButton.continue {
+        max-width: 25%;
+      }
+    }
+  }
+}
